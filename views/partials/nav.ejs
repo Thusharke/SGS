@@ -1,22 +1,28 @@
-<nav class="navbar navbar-expand-sm navbar-light bg-dark fixed-top">
-    <a href="#" class="navbar-brand ml-5"><strong>STUDENT SUPPORT SYSTEM</strong> </a>
-    <button class="navbar-toggler" data-toggle="collapse" data-target="#mymenu">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse"  id="mymenu">
-        <ul class="nav justify-content-end" id="links">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Active</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-        </ul>
-    </div>
+
+<nav>
+  <div class="Brand">
+    <h3><a href="">Student Support System</a></h3>
+  </div>
+  <div class="links">
+    <ul>
+      <% if(!currUser){ %>
+        <li >
+          <a href="/register" class="nav-link">Sign Up</a>
+        </li>
+        <li >
+          <a href="/Login" class="nav-link">Login</a>
+        </li>
+      <%} else {%>
+        <li >
+          <a href="#" class="nav-link">Signed in as <%= currUser.username %></a>
+        </li>
+        <li >
+          <a href="/Logout" class="nav-link">Logout</a>
+        </li>
+      <% } %>
+      <li >
+        <a href="#" class="nav-link">Contact</a>
+      </li>
+    </ul>
+  </div>
 </nav>

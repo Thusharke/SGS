@@ -1,0 +1,13 @@
+body{
+    background-color:rgb(243, 243, 243);
+}
+#form{
+    width: 50%;
+}
+#form-head{
+    margin:3rem auto;
+    text-align:center;
+}
+label{
+    font-weight: 400;
+}

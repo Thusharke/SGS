@@ -1,5 +1,38 @@
 <%- include("../partials/header") %>
+    <link rel="stylesheet" href="/stylesheets/home.css">
+</head>
+<body onload="search()">
+<%- include("../partials/nav")%>
+
+<h1>Welcome <%= currUser.username %> !! to your DashBoard</h1>
+
+<a href="/student/filter">add filter</a>
+
+<% if(filter != 0) { %>
+<form id="filter">
+    <input type="text" id="dept" value=<%= filter.dept %> >
+    <input type="text" id="cat" value=<%= filter.cat %> >
+</form>
+<% } %>
+<br>
 
 <a href="/complaint/new">add new complaint</a>
+<h3> Your past unresolved Complaints </h3>
 
+<% complaints.forEach(function(comp){ %>
+    <% if( comp.author.username == currUser.username ) { %>
+    <div class="comp">
+        <h1><span id="dep"><%= comp.category.department%></span> - <span id="catg"><%= comp.category.sub_category %></span></h1>
+        <p id="des"><%= comp.description %></p>
+        <% if(comp.feedback != "Not yet resolved"){ %>
+            <p>feedBack from the admin :- <%= comp.feedback %><p>
+            <p id="status">Is the complaint resolved <a class="btn-s" href="#">Yes</a> <a class="btn-s" href="/complaint/raise/<%= comp._id %>">No</a></p>
+        <% } %>
+        <p><em> Created <%- moment(comp.raising.request).fromNow() %> </em></p>
+        <hr>
+    </div>
+    <% } %>
+<% }) %>
+<script src="/JS/search.js"></script>
+<script src="/JS/student.js"></script>
 <%- include("../partials/footer") %>

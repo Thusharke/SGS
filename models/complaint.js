@@ -12,11 +12,8 @@ var compSchema = new mongoose.Schema({
     },
     description : String,
     author      :{
-        id : {
-                type : mongoose.Schema.Types.ObjectId,
-                ref  : "student"
-        },
-        username : String
+            type : mongoose.Schema.Types.ObjectId,
+            ref  : "student"
     },
     isRectified : {type : Boolean, default : false},
     feedback    : {type : String,  default : "Not yet resolved"}

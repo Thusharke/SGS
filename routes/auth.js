@@ -9,43 +9,47 @@ router.get("/register",function(req,res){
     res.render("./auth/register");
 })
 router.post("/register",function(req,res){
-    var code = req.body.adminCode;
-    if( code.length > 0 && code == "CVR@123" ){
-        var user = new admin({
-            username : req.body.username, 
-            email : req.body.email,
-            college : req.body.college,
-            university : req.body.university
-        });
-        admin.register(user,req.body.password,function(err,user){
-            if(err){
-                console.log(err);
-                res.redirect("/register");
-            }
-            else{
-                passport.authenticate('adminLocal')(req,res,function(){
-                    res.redirect("/");
-                })
-            }
-        })
-    }
-    else{
-        var user = new student({
-            username : req.body.username, 
-            email : req.body.email,
-            college : req.body.college,
-            university : req.body.university
-        });
-        student.register(user,req.body.password,function(err,user){
-            if(err){
-                console.log(err)
-            }
-            else{
-                passport.authenticate('studentLocal')(req,res,function(){
-                    res.redirect("/");
-                })
-            }
-        })
+    if(req.body.password != req.body.password1){
+        res.redirect("/register");
+    } else {
+        var code = req.body.adminCode;
+        if( code.length > 0 && code == "CVR@123" ){
+            var user = new admin({
+                username : req.body.username, 
+                email : req.body.email,
+                college : req.body.college,
+                university : req.body.university
+            });
+            admin.register(user,req.body.password,function(err,user){
+                if(err){
+                    console.log(err);
+                    res.redirect("/register");
+                }
+                else{
+                    passport.authenticate('adminLocal')(req,res,function(){
+                        res.redirect("/");
+                    })
+                }
+            })
+        }
+        else{
+            var user = new student({
+                username : req.body.username, 
+                email : req.body.email,
+                college : req.body.college,
+                university : req.body.university
+            });
+            student.register(user,req.body.password,function(err,user){
+                if(err){
+                    console.log(err)
+                }
+                else{
+                    passport.authenticate('studentLocal')(req,res,function(){
+                        res.redirect("/");
+                    })
+                }
+            })
+        }
     }
 })
 router.get("/login",function(req,res){
@@ -68,7 +72,7 @@ router.post("/login/student",passport.authenticate("studentLocal",{
 }));
 router.post("/login/admin",passport.authenticate("adminLocal",{
     failureRedirect : "/login",
-    successRedirect : "/"
+    successRedirect : "/admin/home"
 }));
 router.get("/logout",function(req,res){
     req.logout();

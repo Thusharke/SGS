@@ -1,36 +1,99 @@
 <%- include("../partials/header") %>
-<link  rel="stylesheet" type="text/css" href="stylesheets/form.css" >
+<link  rel="stylesheet" type="text/css" href="/stylesheets/register.css" >
 </head>
 <body>
-    <h1 id="form-head"><i class="fas fa-user-plus fa-sm"></i> Register</h1>
+
+    <div class="container" >
+        <div class="img-container">
+            <img class="back" src="/img/stand.svg" >
+        </div>
+        <div class="form">
+            <form action="/register" method="POST">
+                <div class="avt"><img class="avatar" src="/img/avatarb.svg"></div>
+                <div class="head"><h2>Get Started!</h2></div>
+                <div class="form-group">
+                    <input class="input" name="email" autocomplete="off" type="email" required>
+                    <label for="email">
+                        <span class="label"><i class="fas fa-envelope"></i> Email</span>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <input class="input" name="college" autocomplete="off" type="text" required>
+                    <label for="college">
+                        <span class="label"><i class="fas fa-graduation-cap"></i> College</span>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <input class="input" name="university" autocomplete="off" type="text" required>
+                    <label for="university">
+                        <span class="label"><i class="fas fa-university"></i> University</span>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <input class="input" name="username" autocomplete="off" type="text" required>
+                    <label for="username">
+                        <span class="label"><i class="fas fa-user"></i> Username</span>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <input class="input" name="password" autocomplete="off" type="password" required>
+                    <label for="password">
+                        <span class="label"><i class="fas fa-lock-open"></i> Password</span>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <input class="input" name="password1" autocomplete="off" type="password" required>
+                    <label for="password1">
+                        <span class="label"><i class="fas fa-lock"></i> Confirm Password</span>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <input class="input" name="adminCode" autocomplete="off" type="password" required>
+                    <label for="password">
+                        <span class="label"><i class="fas fa-user-secret"></i> Admin Code (For Admin Access)</span>
+                    </label>
+                </div>
+                <input type="submit" class="btn" value="Register">
+            </form>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- <h1 id="form-head"><i class="fas fa-user-plus fa-sm"></i> Register</h1>
     <div class="container" id="form">
         <form action="/register" method="POST">
             <div class="form-group">
-                <label >Email address</label>
+                <label>Email address</label>
                 <input name="email" type="email" placeholder="Email">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">College</label>
+                <label>College</label>
                 <input name="college" type="text" placeholder="College name">
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">University</label>
+                <label>University</label>
                 <input name="university" type="text" placeholder="University name">
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Username</label>
+                <label>Username</label>
                 <input name="username"type="text" placeholder="Username">
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
+                <label>Password</label>
                 <input name="password" type="password" >
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Admin code</label>
+                <label>Confirm Password</label>
+                <input name="password1" type="password" >
+            </div>
+            <div class="form-group">
+                <label>Admin code</label>
                 <input name="adminCode" type="password" placeholder="Enter Admin Code (Optional)">
             </div>
             <button type="submit" >Submit</button>
         </form>
-    </div>
+    </div> -->
 <%- include("../partials/footer") %>

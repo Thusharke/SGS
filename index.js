@@ -1,19 +1,21 @@
-var express = require("express");
-var app = express();
-var bodyParser = require("body-parser");
-var passport = require("passport");
+var express       = require("express");
+var app           = express();
+var passport      = require("passport");
+var mongoose      = require("mongoose");
+app.locals.moment = require("moment");
+var bodyParser    = require("body-parser");
 var LocalStrategy = require("passport-local");
-var mongoose = require("mongoose");
 
 var student = require("./models/student.js");
 var admin   = require("./models/admin.js");
 
-var auth = require("./routes/auth.js");
-var comp = require("./routes/complaint.js");
-var stud = require("./routes/student.js");
+var auth  = require("./routes/auth.js");
+var comp  = require("./routes/complaint.js");
+var stud  = require("./routes/student.js");
+var admn  = require("./routes/admin.js");
 
 var url = process.env.DATABASEURL || "mongodb://localhost/SGS";
-mongoose.connect(url,{useNewUrlParser:true,useUnifiedTopology:true});
+mongoose.connect(url,{ useNewUrlParser:true, useUnifiedTopology:true, useFindAndModify: false });
 
 app.use(require("express-session")({
     secret : "Get your off this",
@@ -48,6 +50,7 @@ app.get("/",function(req,res){
 app.use(auth);
 app.use(comp);
 app.use(stud);
+app.use(admn);
 
 app.listen(process.env.PORT||3000,process.env.IP,function(){
     console.log("The server is running!!");

@@ -1,0 +1,12 @@
+<%- include("../partials/header") %>
+</head>
+<body>
+<%- include("../partials/nav")%>
+
+<h1>Welcome <%= currUser.username %> !! to your Filter form</h1>
+<form action="/admin/home" method="POST">
+    <input name="field[dept]" type="text" id="dept" placeholder="dept" >
+    <input name="field[cat]" type="text" id="cat" placeholder="cat" >
+    <button type="submit">Add filter</button>
+</form>
+<%- include("../partials/footer") %>

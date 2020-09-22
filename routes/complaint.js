@@ -9,7 +9,7 @@ router.get("/complaint/new",function(req,res){
 router.post("/complaint",function(req,res){
     console.log(req.user.username);
     complaint.create({
-        author  :{ id : req.user._id, username : req.user.username },
+        author  :  req.user._id ,
         category    : {
                 department   : req.body.department,
                 sub_category : req.body.category
@@ -21,6 +21,38 @@ router.post("/complaint",function(req,res){
         }
         else{
             console.log("Complaint succesfully raised");
+            console.log(comp);
+            res.redirect("/student/home");
+        }
+    })
+})
+router.post("/complaint/edit/:id",function(req,res){
+    complaint.findByIdAndUpdate(req.params.id,
+        {
+            feedback : req.body.feedback,
+            isRectified : req.body.isRectified
+        }
+        ,function(err,comp){
+        if(err){
+            console.log(err);
+        }
+        else{
+            console.log(comp);
+            res.redirect("/admin/home");
+        }
+    })
+})
+router.get("/complaint/raise/:id",function(req,res){
+    complaint.findByIdAndUpdate(req.params.id,
+        {
+            feedback : "Not yet resolved",
+            isRectified : false
+        }
+        ,function(err,comp){
+        if(err){
+            console.log(err);
+        }
+        else{
             console.log(comp);
             res.redirect("/student/home");
         }

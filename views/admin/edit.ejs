@@ -1,0 +1,12 @@
+<%- include("../partials/header") %>
+<%- include("../partials/nav")%>
+
+<h1>Come on give him a feedback</h1>
+<form action="/complaint/edit/<%= comp._id %>" method="POST">
+    <label for="feedback"> feedback </label>
+    <input type="text" name="feedback" id="feedback" placeholder="Enter feedback">
+    <input type="hidden" name="isRectified" value="true">
+    <button type="submit" >Resolve complaint</button>
+</form>
+
+<%- include("../partials/footer") %>

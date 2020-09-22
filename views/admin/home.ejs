@@ -1,0 +1,34 @@
+<%- include("../partials/header") %>
+<%- include("../partials/nav")%>
+<link rel="stylesheet" href="/stylesheets/homeAd.css">
+</head>
+<body onload="search()">
+
+<h1>Welcome <%= currUser.username %> !! (ADMIN) to your DashBoard</h1>
+
+<a href="/admin/filter">add filter</a>
+
+<% if(filter != 0) { %>
+    <form id="filter">
+        <input type="text" id="dept" value=<%= filter.dept %> >
+        <input type="text" id="cat" value=<%= filter.cat %> >
+    </form>
+<% } %>
+<br>
+
+<h3> Complaints that need to be resolved </h3>
+
+<% complaints.forEach(function(comp){ %>
+    <% if(comp.isRectified == false){ %>
+    <div class="comp">
+        <h1><span id="dep"><%= comp.category.department%></span> - <span id="catg"><%= comp.category.sub_category %></span></h1>
+        <p><%= comp.description %></p>
+        <a href="/admin/edit/<%= comp._id %>">Resolve</a>
+        <p><em> Created <%- moment(comp.raising.request).fromNow() %> </em></p>
+        <hr>
+    </div>
+    <% } %>
+<% }) %>
+
+<script src="/JS/search.js" ></script>
+<%- include("../partials/footer") %>
